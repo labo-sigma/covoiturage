@@ -1,5 +1,5 @@
 dataSource {
-    pooled = true
+    pooled = true	
     driverClassName = "org.h2.Driver"
     username = "sa"
     password = ""
@@ -14,7 +14,8 @@ environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE"
+            url = "jdbc:h2:file:C:/FrmTemp/devDb.db;AUTO_SERVER=TRUE"
+			
         }
     }
     test {

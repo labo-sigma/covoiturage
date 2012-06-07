@@ -31,8 +31,10 @@ class Utilisateur {
 	String prenom
 	String adresseDomicile
 	Long codePostalDomicile
+	String villeDomicile
 	String adresseDestination
 	Long codePostalDestination
+	String villeDestination
 
 	static constraints = {
 		username blank: false, unique: true
@@ -41,8 +43,10 @@ class Utilisateur {
 		prenom nullable: true
 		adresseDomicile nullable: true
 		codePostalDomicile nullable: true
+		villeDomicile nullable: true
 		adresseDestination nullable: true
 		codePostalDestination nullable: true
+		villeDestination nullable: true
 		
 	}
 
