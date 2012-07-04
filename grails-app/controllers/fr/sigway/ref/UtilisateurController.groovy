@@ -21,19 +21,21 @@ class UtilisateurController {
 
     def save() {
         def utilisateurInstance = new Utilisateur(params)
-        if (!utilisateurInstance.save(flush: true)) {
+        if (!utilisateurInstance.adresseDomicile.save() || 
+			!utilisateurInstance.adresseDestination.save() || 
+			!utilisateurInstance.save()) {
             render(view: "create", model: [utilisateurInstance: utilisateurInstance])
             return
         }
 
-		flash.message = message(code: 'default.created.message', args: [message(code: 'utilisateur.label', default: 'Utilisateur'), utilisateurInstance.id])
+		flash.message = message(code: 'default.created.message', args: [message(code: 'utilisateur.label'), utilisateurInstance.id])
         redirect(action: "show", id: utilisateurInstance.id)
     }
 
     def show() {
         def utilisateurInstance = Utilisateur.get(params.id)
         if (!utilisateurInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'utilisateur.label', default: 'Utilisateur'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'utilisateur.label'), params.id])
             redirect(action: "list")
             return
         }
@@ -44,7 +46,7 @@ class UtilisateurController {
     def edit() {
         def utilisateurInstance = Utilisateur.get(params.id)
         if (!utilisateurInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'utilisateur.label', default: 'Utilisateur'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'utilisateur.label'), params.id])
             redirect(action: "list")
             return
         }
@@ -55,7 +57,7 @@ class UtilisateurController {
     def update() {
         def utilisateurInstance = Utilisateur.get(params.id)
         if (!utilisateurInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'utilisateur.label', default: 'Utilisateur'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'utilisateur.label'), params.id])
             redirect(action: "list")
             return
         }
@@ -64,7 +66,7 @@ class UtilisateurController {
             def version = params.version.toLong()
             if (utilisateurInstance.version > version) {
                 utilisateurInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'utilisateur.label', default: 'Utilisateur')] as Object[],
+                          [message(code: 'utilisateur.label')] as Object[],
                           "Another user has updated this Utilisateur while you were editing")
                 render(view: "edit", model: [utilisateurInstance: utilisateurInstance])
                 return
@@ -73,30 +75,34 @@ class UtilisateurController {
 
         utilisateurInstance.properties = params
 
-        if (!utilisateurInstance.save(flush: true)) {
+        if (!utilisateurInstance.adresseDomicile.save() || 
+			!utilisateurInstance.adresseDestination.save() || 
+			!utilisateurInstance.save()) {
             render(view: "edit", model: [utilisateurInstance: utilisateurInstance])
             return
         }
 
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'utilisateur.label', default: 'Utilisateur'), utilisateurInstance.id])
+		flash.message = message(code: 'default.updated.message', args: [message(code: 'utilisateur.label'), utilisateurInstance.id])
         redirect(action: "show", id: utilisateurInstance.id)
     }
 
     def delete() {
         def utilisateurInstance = Utilisateur.get(params.id)
         if (!utilisateurInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'utilisateur.label', default: 'Utilisateur'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'utilisateur.label'), params.id])
             redirect(action: "list")
             return
         }
 
         try {
-            utilisateurInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'utilisateur.label', default: 'Utilisateur'), params.id])
+            utilisateurInstance.delete()
+			utilisateurInstance.adresseDomicile.delete();
+			utilisateurInstance.adresseDestination.delete();
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'utilisateur.label'), params.id])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'utilisateur.label', default: 'Utilisateur'), params.id])
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'utilisateur.label'), params.id])
             redirect(action: "show", id: params.id)
         }
     }
