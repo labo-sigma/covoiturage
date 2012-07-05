@@ -14,7 +14,7 @@ environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:file:C:/FrmTemp/devDb.db;AUTO_SERVER=TRUE"
+            url = "jdbc:h2:file:/tmp/devDb.db;AUTO_SERVER=TRUE"
 			
         }
     }

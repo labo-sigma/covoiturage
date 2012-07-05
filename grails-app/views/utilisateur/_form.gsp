@@ -2,17 +2,17 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'username', 'error')} required">
-	<label for="username">
-		<g:message code="utilisateur.username.label" default="Username" />
+<div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'email', 'error')} required">
+	<label for="email">
+		<g:message code="utilisateur.email.label"  />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="username" required="" value="${utilisateurInstance?.username}"/>
+	<g:textField name="email" required="" value="${utilisateurInstance?.email}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'password', 'error')} required">
 	<label for="password">
-		<g:message code="utilisateur.password.label" default="Password" />
+		<g:message code="utilisateur.password.label"  />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="password" required="" value="${utilisateurInstance?.password}"/>
@@ -20,7 +20,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'nom', 'error')} ">
 	<label for="nom">
-		<g:message code="utilisateur.nom.label" default="Nom" />
+		<g:message code="utilisateur.nom.label"  />
 		
 	</label>
 	<g:textField name="nom" value="${utilisateurInstance?.nom}"/>
@@ -28,63 +28,66 @@
 
 <div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'prenom', 'error')} ">
 	<label for="prenom">
-		<g:message code="utilisateur.prenom.label" default="Prenom" />
+		<g:message code="utilisateur.prenom.label"  />
 		
 	</label>
 	<g:textField name="prenom" value="${utilisateurInstance?.prenom}"/>
 </div>
-
-<div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'adresseDomicile', 'error')} ">
-	<label for="adresseDomicile">
-		<g:message code="utilisateur.adresseDomicile.label" default="Adresse Domicile" />
-		
-	</label>
-	<g:textField name="adresseDomicile" value="${utilisateurInstance?.adresseDomicile}"/>
+<div title="Domicile" >
+	
+	<div class="fieldcontain ${hasErrors(bean: utilisateurInstance.adresseDomicile, field: 'adresse', 'error')} ">
+		<label for="adresseDomicile.adresse">
+			<g:message code="utilisateur.adresseDomicile.adresse.label"  />
+			
+		</label>
+		<g:textField name="adresseDomicile.adresse" value="${utilisateurInstance?.adresseDomicile?.adresse}"/>
+	</div>
+	
+	<div class="fieldcontain ${hasErrors(bean: utilisateurInstance.adresseDomicile, field: 'codePostal', 'error')} required ">
+		<label for="adresseDomicile.codePostal">
+			<g:message code="utilisateur.adresseDomicile.codepostal.label"  />
+			<span class="required-indicator">*</span>
+		</label>
+		<g:field min="1" max="99999" type="number"  required="" name="adresseDomicile.codePostal" value="${utilisateurInstance.adresseDomicile.codePostal}"/>
+	</div>
+	
+	<div class="fieldcontain ${hasErrors(bean: utilisateurInstance.adresseDomicile, field: 'ville', 'error')} ">
+		<label for="adresseDomicile.ville">
+			<g:message code="utilisateur.adresseDomicile.ville.label" />
+			
+		</label>
+		<g:textField name="adresseDomicile.ville" value="${utilisateurInstance?.adresseDomicile?.ville}"/>
+	</div>
+	
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'codePostalDomicile', 'error')} ">
-	<label for="codePostalDomicile">
-		<g:message code="utilisateur.codePostalDomicile.label" default="Code Postal Domicile" />
+<div class="fieldcontain ${hasErrors(bean: utilisateurInstance.adresseDestination, field: 'adresse', 'error')} ">
+	<label for="adresseDestination.adresse">
+		<g:message code="utilisateur.adresseDestination.adresse.label"  />
 		
 	</label>
-	<g:field type="number" name="codePostalDomicile" value="${fieldValue(bean: utilisateurInstance, field: 'codePostalDomicile')}"/>
+	<g:textField name="adresseDestination.adresse" value="${utilisateurInstance?.adresseDestination?.adresse}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'villeDomicile', 'error')} ">
-	<label for="villeDomicile">
-		<g:message code="utilisateur.villeDomicile.label" default="Ville Domicile" />
-		
+<div class="fieldcontain ${hasErrors(bean: utilisateurInstance.adresseDestination, field: 'codePostal', 'error')} required">
+	<label for="adresseDestination.codePostal">
+		<g:message code="utilisateur.adresseDestination.codepostal.label"  />
+		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="villeDomicile" value="${utilisateurInstance?.villeDomicile}"/>
+	<g:field type="number" min="1" max="99999" required="" name="adresseDestination.codePostal" value="${utilisateurInstance.adresseDestination.codePostal}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'adresseDestination', 'error')} ">
-	<label for="adresseDestination">
-		<g:message code="utilisateur.adresseDestination.label" default="Adresse Destination" />
+<div class="fieldcontain ${hasErrors(bean: utilisateurInstance.adresseDestination, field: 'ville', 'error')} ">
+	<label for="adresseDestination.Ville">
+		<g:message code="utilisateur.adresseDestination.ville.label"  />
 		
 	</label>
-	<g:textField name="adresseDestination" value="${utilisateurInstance?.adresseDestination}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'codePostalDestination', 'error')} ">
-	<label for="codePostalDestination">
-		<g:message code="utilisateur.codePostalDestination.label" default="Code Postal Destination" />
-		
-	</label>
-	<g:field type="number" name="codePostalDestination" value="${fieldValue(bean: utilisateurInstance, field: 'codePostalDestination')}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'villeDestination', 'error')} ">
-	<label for="villeDestination">
-		<g:message code="utilisateur.villeDestination.label" default="Ville Destination" />
-		
-	</label>
-	<g:textField name="villeDestination" value="${utilisateurInstance?.villeDestination}"/>
+	<g:textField name="adresseDestination.ville" value="${utilisateurInstance?.adresseDestination?.ville}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'accountExpired', 'error')} ">
 	<label for="accountExpired">
-		<g:message code="utilisateur.accountExpired.label" default="Account Expired" />
+		<g:message code="utilisateur.accountExpired.label"  />
 		
 	</label>
 	<g:checkBox name="accountExpired" value="${utilisateurInstance?.accountExpired}" />
@@ -92,7 +95,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'accountLocked', 'error')} ">
 	<label for="accountLocked">
-		<g:message code="utilisateur.accountLocked.label" default="Account Locked" />
+		<g:message code="utilisateur.accountLocked.label"  />
 		
 	</label>
 	<g:checkBox name="accountLocked" value="${utilisateurInstance?.accountLocked}" />
@@ -100,7 +103,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'enabled', 'error')} ">
 	<label for="enabled">
-		<g:message code="utilisateur.enabled.label" default="Enabled" />
+		<g:message code="utilisateur.enabled.label" />
 		
 	</label>
 	<g:checkBox name="enabled" value="${utilisateurInstance?.enabled}" />
@@ -108,7 +111,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'passwordExpired', 'error')} ">
 	<label for="passwordExpired">
-		<g:message code="utilisateur.passwordExpired.label" default="Password Expired" />
+		<g:message code="utilisateur.passwordExpired.label"  />
 		
 	</label>
 	<g:checkBox name="passwordExpired" value="${utilisateurInstance?.passwordExpired}" />
