@@ -96,3 +96,11 @@ log4j = {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'fr.sigway.ref.Utilisateur'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'fr.sigway.ref.UtilisateurRole'
 grails.plugins.springsecurity.authority.className = 'fr.sigway.ref.Role'
+
+sigway {
+	env{
+		initData {
+			password="Password1"
+		}
+	}
+}
