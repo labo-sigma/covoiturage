@@ -48,7 +48,7 @@
 			<g:message code="utilisateur.adresseDomicile.codepostal.label"  />
 			<span class="required-indicator">*</span>
 		</label>
-		<g:field min="1" max="99999" type="number"  required="" name="adresseDomicile.codePostal" value="${utilisateurInstance.adresseDomicile.codePostal}"/>
+		<g:field min="1" max="99999" type="number"  required="" name="adresseDomicile.codePostal" value="${utilisateurInstance.adresseDomicile?.codePostal}"/>
 	</div>
 	
 	<div class="fieldcontain ${hasErrors(bean: utilisateurInstance.adresseDomicile, field: 'ville', 'error')} ">
@@ -74,7 +74,7 @@
 		<g:message code="utilisateur.adresseDestination.codepostal.label"  />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field type="number" min="1" max="99999" required="" name="adresseDestination.codePostal" value="${utilisateurInstance.adresseDestination.codePostal}"/>
+	<g:field type="number" min="1" max="99999" required="" name="adresseDestination.codePostal" value="${utilisateurInstance.adresseDestination?.codePostal}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: utilisateurInstance.adresseDestination, field: 'ville', 'error')} ">
