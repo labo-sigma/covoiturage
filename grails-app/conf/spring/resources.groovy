@@ -13,12 +13,15 @@
  
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>*/
+import org.codehaus.groovy.grails.plugins.springsecurity.GormUserDetailsService
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.authentication.dao.SystemWideSaltSource
 
 // Place your Spring DSL code here
 beans = {
 	/** sel pour renforcer la sécurité du mot de passe */
-	sigwaySaltSource(SystemWideSaltSource) {
+	saltSource(SystemWideSaltSource) {
 		systemWideSalt = "!sigway01"
 	}
+
 }

@@ -20,6 +20,7 @@ package fr.sigway.ref
 class Utilisateur {
 
 	transient springSecurityService
+	transient saltSource 
 
 	String email
 	String password
@@ -62,6 +63,8 @@ class Utilisateur {
 	}
 
 	protected void encodePassword() {
-		password = springSecurityService.encodePassword(password)
+		println password 
+		password = springSecurityService.encodePassword(password, saltSource.getSalt(null))
+		println password
 	}
 }

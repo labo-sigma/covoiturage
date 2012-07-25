@@ -23,12 +23,6 @@ import fr.sigway.ref.Utilisateur
 
 class BootStrap {
 	
-	/** dependency injection for the password encoder */
-	PasswordEncoder passwordEncoder
-	
-	/** sel pour renforcer la sécurité du mot de passe */
-	SaltSource sigwaySaltSource
-	
 	/**Injecté*/
 	DataHelperService dataHelperService
 	
@@ -44,7 +38,7 @@ class BootStrap {
 	
 	void initialiserDonnees(){
 		def initDataConfig = grailsApplication.config.sigway.env.initData
-		def password = passwordEncoder.encodePassword(initDataConfig.password, sigwaySaltSource.getSalt(null))
+		def password = initDataConfig.password 
 		def ref = dataHelperService.creerDonneesRef()
 		dataHelperService.creerDonneesUtilisateur(ref, password)
 	}
