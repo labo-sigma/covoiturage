@@ -1,3 +1,4 @@
+package fr.sigway.ref
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 class LogoutController {
