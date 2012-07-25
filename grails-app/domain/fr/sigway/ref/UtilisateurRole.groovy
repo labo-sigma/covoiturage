@@ -18,8 +18,12 @@ class UtilisateurRole implements Serializable {
 
 	int hashCode() {
 		def builder = new HashCodeBuilder()
-		if (utilisateur) builder.append(utilisateur.id)
-		if (role) builder.append(role.id)
+		if (utilisateur){
+			 builder.append(utilisateur.id)
+		}
+		if (role){
+			builder.append(role.id)
+		}
 		builder.toHashCode()
 	}
 
