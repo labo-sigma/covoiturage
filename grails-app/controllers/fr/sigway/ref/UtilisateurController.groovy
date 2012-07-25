@@ -21,8 +21,8 @@ class UtilisateurController {
 
     def save() {
         def utilisateurInstance = new Utilisateur(params)
-        if (!utilisateurInstance.adresseDomicile.save() || 
-			!utilisateurInstance.adresseDestination.save() || 
+        if (!utilisateurInstance.adresseDomicile?.save() || 
+			!utilisateurInstance.adresseDestination?.save() || 
 			!utilisateurInstance.save()) {
             render(view: "create", model: [utilisateurInstance: utilisateurInstance])
             return
