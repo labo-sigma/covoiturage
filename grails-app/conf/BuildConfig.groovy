@@ -45,6 +45,8 @@ grails.project.dependency.resolution = {
 		
 		
 		compile ":codenarc:0.17"
+		test ":code-coverage:1.2.5"
+		
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"

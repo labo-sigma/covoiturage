@@ -2,18 +2,30 @@ package fr.sigway.ref
 
 
 
-import org.junit.*
+import grails.plugins.springsecurity.SpringSecurityService;
 import grails.test.mixin.*
 
+import org.junit.*
+import org.springframework.security.authentication.dao.SystemWideSaltSource;
+
 @TestFor(UtilisateurController)
-@Mock(Utilisateur)
+@Mock([Utilisateur, Adresse])
 class UtilisateurControllerTests {
+	
+	private void defineBeans(){
+		new Utilisateur().getClass().metaClass.encodePassword = { return "Password1"}
+	}
 
 
     def populateValidParams(params) {
       assert params != null
-      // TODO: Populate valid properties like...
-      //params["name"] = 'someValidName'
+      params["name"] = 'someValidName'
+	  params["email"] = "test"
+	  params["password"] = "testPassword"  
+	  params["nom"] = "nomAdmin" 
+	  params["prenom"] = "prenomAdmin"  
+	  params["adresseDomicile.codePostal"] = "44000"
+	  params["adresseDestination.codePostal"] = "44000"
     }
 
     void testIndex() {
@@ -36,6 +48,7 @@ class UtilisateurControllerTests {
     }
 
     void testSave() {
+		defineBeans()
         controller.save()
 
         assert model.utilisateurInstance != null
@@ -52,6 +65,7 @@ class UtilisateurControllerTests {
     }
 
     void testShow() {
+		defineBeans()
         controller.show()
 
         assert flash.message != null
@@ -71,6 +85,7 @@ class UtilisateurControllerTests {
     }
 
     void testEdit() {
+		defineBeans()
         controller.edit()
 
         assert flash.message != null
@@ -90,6 +105,7 @@ class UtilisateurControllerTests {
     }
 
     void testUpdate() {
+		defineBeans()
         controller.update()
 
         assert flash.message != null
@@ -105,7 +121,8 @@ class UtilisateurControllerTests {
 
         // test invalid parameters in update
         params.id = utilisateur.id
-        //TODO: add invalid values to params object
+        //add invalid values to params object
+		params."adresseDomicile.codePostal" = ""
 
         controller.update()
 
@@ -136,6 +153,7 @@ class UtilisateurControllerTests {
     }
 
     void testDelete() {
+		defineBeans()
         controller.delete()
         assert flash.message != null
         assert response.redirectedUrl == '/utilisateur/list'

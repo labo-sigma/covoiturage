@@ -17,6 +17,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>*/
 
 package fr.sigway.ref
 
+import grails.plugins.springsecurity.SpringSecurityService
+
+import org.springframework.security.authentication.dao.SystemWideSaltSource
+
 class Utilisateur {
 
 	transient springSecurityService
@@ -32,7 +36,8 @@ class Utilisateur {
 	String prenom
 	Adresse adresseDomicile
 	Adresse adresseDestination
-
+	
+	
 	static constraints = {
 		email blank: false, unique: true
 		password blank: false	
@@ -63,6 +68,6 @@ class Utilisateur {
 	}
 
 	protected void encodePassword() {
-		password = springSecurityService.encodePassword(password, saltSource.getSalt(null))
+		password = springSecurityService.encodePassword(password, saltSource?.getSalt(null))
 	}
 }
