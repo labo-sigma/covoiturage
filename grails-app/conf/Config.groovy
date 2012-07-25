@@ -92,7 +92,41 @@ log4j = {
            'net.sf.ehcache.hibernate'
 }
 
+sigway {
+	env{
+		initData {
+			password="Password1"
+		}
+	}
+}
+
+
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'fr.sigway.ref.Utilisateur'
+grails.plugins.springsecurity.userLookup.usernamePropertyName = 'email'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'fr.sigway.ref.UtilisateurRole'
 grails.plugins.springsecurity.authority.className = 'fr.sigway.ref.Role'
+grails.plugins.springsecurity.successHandler.defaultTargetUrl='/'
+//On redirige toujours vers la page d'accueil suite a une authentification
+//Et l'on revient sur la page accueil avec onglet.
+grails.plugins.springsecurity.successHandler.alwaysUseDefault=true
+
+grails.plugins.springsecurity.rejectIfNoRule = true
+
+grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugins.springsecurity.interceptUrlMap = [
+	'/utilisateur/**':    ['ROLE_PROFIL_ADMIN'],
+	'/monitoring/**':['ROLE_PROFIL_ADMIN'],
+	'**/js/**':      ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/css/**':       ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/plugins/**':   ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/images/**':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/login/**':     ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/**':      	 ['IS_AUTHENTICATED_FULLY'],
+	'/logout/**':    ['IS_AUTHENTICATED_FULLY']
+ ]
+
+
+grails.plugins.springsecurity.failureHandler.exceptionMappings = [
+   'org.springframework.security.authentication.CredentialsExpiredException': '/login/afficherChangementPasswordExpire'
+]
