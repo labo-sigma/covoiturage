@@ -37,8 +37,6 @@ class BootStrap {
 	
     def init = { servletContext ->
 		initialiserDonnees()
-		dataHelperService.creerDonneesRef()
-
 		
     }
     def destroy = {
