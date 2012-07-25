@@ -19,6 +19,7 @@ import org.springframework.security.authentication.encoding.PasswordEncoder
 
 import fr.sigway.ref.Utilisateur
 import fr.sigway.technique.DataHelperService
+import fr.sigway.ref.Utilisateur
 
 class BootStrap {
 	
@@ -33,8 +34,10 @@ class BootStrap {
 	
 	GrailsApplication grailsApplication
 
+	
     def init = { servletContext ->
 		initialiserDonnees()
+		dataHelperService.creerDonneesRef()
 
 		
     }
