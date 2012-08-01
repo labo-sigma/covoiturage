@@ -1,3 +1,5 @@
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+
 <!doctype html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -19,6 +21,20 @@
 	</head>
 	<body>
 		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
+		<div id="bandeauUtilisateur" role="banner" style="text-align:right">
+		
+		<sec:ifNotLoggedIn>
+  			<g:link controller="login" action="auth" ><g:message code="accueil.connexion"/></g:link>
+		</sec:ifNotLoggedIn>
+		<sec:ifLoggedIn>
+  			<g:link controller="utilisateur" action="modifierCompte" id="${SecurityContextHolder.getContext().getAuthentication().getName()}"><g:message code="${SecurityContextHolder.getContext().getAuthentication().getName()}"></g:message></g:link>
+				<g:link controller="logout" action="index" ><g:message code="accueil.deconnexion"/></g:link>	
+		</sec:ifLoggedIn>
+		
+
+		
+			
+		</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
