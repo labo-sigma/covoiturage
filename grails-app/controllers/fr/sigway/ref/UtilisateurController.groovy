@@ -106,4 +106,17 @@ class UtilisateurController {
             redirect(action: "show", id: params.id)
         }
     }
+	
+	def modifierCompte() {
+		def utilisateurInstance = Utilisateur.findByEmail(params.id)
+		if (!utilisateurInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'utilisateur.label'), params.id])
+			redirect(action: "list")
+			return
+		}else {
+		redirect(action: "edit", id: utilisateurInstance.id)	
+		}
+
+		[utilisateurInstance: utilisateurInstance]
+	}
 }
