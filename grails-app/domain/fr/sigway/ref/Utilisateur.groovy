@@ -70,4 +70,17 @@ class Utilisateur {
 	protected void encodePassword() {
 		password = springSecurityService.encodePassword(password, saltSource?.getSalt(null))
 	}
+	
+	public static int nombreCovoitureursPotentiels(Integer codePostal) {
+		def criteria = Utilisateur.createCriteria()
+		def utilisateurs = criteria.list{	
+			adresseDomicile {
+				eq('codePostal', codePostal)
+				
+			}
+			
+		}
+		return utilisateurs.size()
+		
+	}
 }
