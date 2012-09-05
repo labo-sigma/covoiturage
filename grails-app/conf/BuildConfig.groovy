@@ -46,7 +46,7 @@ grails.project.dependency.resolution = {
 		
 		compile ":codenarc:0.17"
 		test ":code-coverage:1.2.5"
-		compile ":twitter-bootstrap:2.0.2.25"
+		compile ":twitter-bootstrap:2.1.1"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
