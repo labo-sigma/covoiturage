@@ -29,30 +29,55 @@
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
+		<r:require modules="bootstrap"/>
 		<g:layoutHead/>
         <r:layoutResources />
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
-		<div id="bandeauUtilisateur" role="banner" style="text-align:right">
-		
-		<sec:ifNotLoggedIn>
-  			<g:link controller="login" action="auth" ><g:message code="accueil.connexion"/></g:link>
-		</sec:ifNotLoggedIn>
-		<sec:ifLoggedIn>
-  			<g:link controller="utilisateur" action="modifierCompte" id="${SecurityContextHolder.getContext().getAuthentication().getName()}"><g:message code="${SecurityContextHolder.getContext().getAuthentication().getName()}"></g:message></g:link>
-				<g:link controller="logout" action="index" ><g:message code="accueil.deconnexion"/></g:link>	
-		</sec:ifLoggedIn>
-		
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Covoiturage</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#"><g:message code="menu.accueil" /></a></li>
+              <li><a href="#"><g:message code="menu.aPropos" /></a></li>
+              <li><a href="#"><g:message code="menu.contact" /></a></li>
+              <sec:ifLoggedIn>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><g:message code="menu.compte"/><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><g:link controller="utilisateur" action="modifierCompte" id="${SecurityContextHolder.getContext().getAuthentication().getName()}"><g:message code="modifier mon compte"/></g:link></li>
+                  <li><g:link controller="logout" action="index" ><g:message code="accueil.deconnexion"/></g:link></li>
+                </ul>
+              </li>
+              </sec:ifLoggedIn>
+            </ul>
+            <sec:ifNotLoggedIn>
+            <form action='${g.createLink(controller:'j_spring_security_check')}' class="navbar-form pull-right" method='POST' id='loginForm'>
+              <input class="span2" type="text" placeholder="${g.message(code:"springSecurity.login.username.label") }" name="j_username">
+              <input class="span2" type="password" placeholder="${g.message(code:"springSecurity.login.password.label") }" name='j_password'>
+              <input type='submit' id="submit" value='${message(code: "springSecurity.login.button")}' class="btn"/>
+            </form>
+            </sec:ifNotLoggedIn>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <div class="container">
 
-		
-			
-		</div>
 		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
-		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+      <hr>
+      <footer>
+        <p>&copy; Company 2012</p>
+      </footer>
+
+    </div>
 		<g:javascript library="application"/>
         <r:layoutResources />
 	</body>
