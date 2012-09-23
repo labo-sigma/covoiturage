@@ -18,22 +18,21 @@
 <head>
 	<meta name='layout' content='main'/>
 	<title><g:message code="accueil.title"/></title>
-	
 </head>
 
 <body>
 	<g:if test='${flash.message}'>
-		    <div class="alert">
-   				<button type="button" class="close" data-dismiss="alert">×</button>
-   				<strong>Warning!</strong> ${flash.message}
-   			</div>
+		<div class="alert">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<strong>Warning!</strong> ${flash.message}
+		</div>
 	</g:if>	
-
-      <div class="hero-unit">
-        <h2><g:message code="accueil.accroche.titre" /></h2>
-        <p><g:message code="accueil.accroche.contenu"/></p>
-        <p>
-	        <g:form id='accueilForm' class='cssform' autocomplete='off'  url="[action:'rechercherCorrespondanceCodePostal',controller:'accueil']" >
+	
+	<div class="hero-unit">
+		<h2><g:message code="accueil.accroche.titre" /></h2>
+		<p><g:message code="accueil.accroche.contenu"/></p>
+		<p>
+	 		<g:form id='accueilForm' class='cssform' autocomplete='off'  url="[action:'rechercherCorrespondanceCodePostal',controller:'accueil']" >
 				<p>
 					<label ><g:message code="accueil.codePostal"/>:</label>
 					<g:field type="number" min="1" max="99999" required="" name="codePostal" value="${codePostal}"/>
@@ -43,16 +42,15 @@
 					<p>${correspondances + " "}<g:message code="accueil.correspondances"/></p> 
 					<p><g:link controller="accueil" action="creerCompte" ><g:message code="accueil.creercompte"/></g:link></p>
 				</g:if>
-								
 			</g:form>
-        </p>
-      </div>
-<script type='text/javascript'>
-	<!--
-	(function() {
-		document.forms['accueilForm'].elements['codePostal'].focus();
-	})();
-	// -->
-</script>
+	      </p>
+	    </div>
+	<script type='text/javascript'>
+		<!--
+		(function() {
+			document.forms['accueilForm'].elements['codePostal'].focus();
+		})();
+		// -->
+	</script>
 </body>
 </html>
