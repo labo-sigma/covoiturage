@@ -57,8 +57,8 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="${createLink(uri: '/')}"><g:message code="menu.accueil" /></a></li>
-              <li><a href="#"><g:message code="menu.aPropos" /></a></li>
-              <li><a href="#"><g:message code="menu.contact" /></a></li>
+              <li><a href="${createLink(uri: '/contact')}"><g:message code="menu.aPropos" /></a></li>
+              <li><a href="${createLink(uri: '/aPropos')}"><g:message code="menu.contact" /></a></li>
               <sec:ifLoggedIn>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><g:message code="menu.compte"/><b class="caret"></b></a>

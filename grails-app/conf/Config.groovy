@@ -117,6 +117,8 @@ grails.plugins.springsecurity.rejectIfNoRule = true
 
 grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
 grails.plugins.springsecurity.interceptUrlMap = [
+	'/contact':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/aPropos':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/utilisateur/**':    ['ROLE_PROFIL_ADMIN','ROLE_PROFIL_COVOITUREUR'],
 	'/monitoring/**':['ROLE_PROFIL_ADMIN'],
 	'**/js/**':      ['IS_AUTHENTICATED_ANONYMOUSLY'],

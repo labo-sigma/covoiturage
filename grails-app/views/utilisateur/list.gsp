@@ -1,6 +1,22 @@
+<!--Sigway - covoiturage
+ Copyright (C) 2012 - Laurent Coiffard
+ 
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>-->
 
 <%@ page import="fr.sigway.ref.Utilisateur" %>
 <!doctype html>
+
 <html>
 	<head>
 		<meta name="layout" content="main">
@@ -25,6 +41,8 @@
 					
 						<g:sortableColumn property="email" title="${message(code: 'utilisateur.email.label', default: 'Email')}" />
 					
+						<g:sortableColumn property="password" title="${message(code: 'utilisateur.password.label', default: 'Password')}" />
+					
 						<g:sortableColumn property="nom" title="${message(code: 'utilisateur.nom.label', default: 'Nom')}" />
 					
 						<g:sortableColumn property="prenom" title="${message(code: 'utilisateur.prenom.label', default: 'Prenom')}" />
@@ -40,6 +58,8 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${utilisateurInstance.id}">${fieldValue(bean: utilisateurInstance, field: "email")}</g:link></td>
+					
+						<td>${fieldValue(bean: utilisateurInstance, field: "password")}</td>
 					
 						<td>${fieldValue(bean: utilisateurInstance, field: "nom")}</td>
 					
