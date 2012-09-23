@@ -16,16 +16,16 @@
 
 <%@ page import="fr.sigway.ref.Utilisateur" %>
 <!doctype html>
+
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'utilisateur.label')}" />
+		<g:set var="entityName" value="${message(code: 'utilisateur.label', default: 'Utilisateur')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#list-utilisateur" class="skip" tabindex="-1"><g:message code="default.link.skip.label" /></a>
-		<div class="nav" role="navigation">
-			<ul>
+		<div>
+			<ul class="nav nav-tabs">
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
@@ -33,20 +33,23 @@
 		<div id="list-utilisateur" class="content scaffold-list" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table>
+			<table class="table table-striped">
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="email" title="${message(code: 'utilisateur.email.label')}" />
+						<g:sortableColumn property="email" title="${message(code: 'utilisateur.email.label', default: 'Email')}" />
 					
-						<g:sortableColumn property="password" title="${message(code: 'utilisateur.password.label')}" />
+						<g:sortableColumn property="password" title="${message(code: 'utilisateur.password.label', default: 'Password')}" />
 					
-						<g:sortableColumn property="nom" title="${message(code: 'utilisateur.nom.label')}" />
+						<g:sortableColumn property="nom" title="${message(code: 'utilisateur.nom.label', default: 'Nom')}" />
 					
-						<g:sortableColumn property="prenom" title="${message(code: 'utilisateur.prenom.label')}" />
+						<g:sortableColumn property="prenom" title="${message(code: 'utilisateur.prenom.label', default: 'Prenom')}" />
 					
+						<th><g:message code="utilisateur.adresseDomicile.label" default="Adresse Domicile" /></th>
+					
+						<th><g:message code="utilisateur.adresseDestination.label" default="Adresse Destination" /></th>
 					
 					</tr>
 				</thead>
@@ -62,12 +65,15 @@
 					
 						<td>${fieldValue(bean: utilisateurInstance, field: "prenom")}</td>
 					
+						<td>${fieldValue(bean: utilisateurInstance, field: "adresseDomicile")}</td>
+					
+						<td>${fieldValue(bean: utilisateurInstance, field: "adresseDestination")}</td>
 					
 					</tr>
 				</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
+			<div class="pagination pagination-centered">
 				<g:paginate total="${utilisateurInstanceTotal}" />
 			</div>
 		</div>
