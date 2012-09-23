@@ -28,6 +28,8 @@ class Adresse {
 		ville nullable: true		
 	}
 	
-	
+	String toString() {
+		return codePostal + " : " + ville + " : " + adresse
+	}
 
 }
