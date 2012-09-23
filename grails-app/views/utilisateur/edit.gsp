@@ -45,7 +45,7 @@
 			</ul>
 			</g:hasErrors>
 			
-			<form class="form-horizontal" method="post" >
+			<g:form class="form-horizontal" method="post" >
 				<g:hiddenField name="id" value="${utilisateurInstance?.id}" />
 				<g:hiddenField name="version" value="${utilisateurInstance?.version}" />
 				<div class="control-group">
@@ -57,7 +57,7 @@
 						<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 					</div>
 				</div>
-			</form>
+			</g:form>
 			
 		</div>
 	</body>

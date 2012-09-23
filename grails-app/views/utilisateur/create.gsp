@@ -27,7 +27,6 @@
 		<sec:ifLoggedIn>
 			<div role="navigation">
 				<ul class="nav nav-tabs">
-					<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 					<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				</ul>
 			</div>
@@ -45,16 +44,16 @@
 			</ul>
 			</g:hasErrors>
 			
-			<form class="form-horizontal" action="save" >
+			<g:form class="form-horizontal" action="save" >
 				<div class="control-group">
-					<g:render template="form"/>
+					<g:render template="form" contextPath="/Utilisateur"/>
 				</div>
 				<div class="control-group">
 					<div class="controls">
 						<g:submitButton name="create" class="btn btn-success" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 					</div>
 				</div>
-			</form>
+			</g:form>
 			
 		</div>
 	</body>

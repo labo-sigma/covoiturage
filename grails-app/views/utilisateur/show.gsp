@@ -35,7 +35,7 @@
 		<div id="show-utilisateur" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+				<div class="alert" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list utilisateur">
 			
@@ -75,20 +75,56 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${utilisateurInstance?.adresseDomicile}">
+				<g:if test="${utilisateurInstance?.adresseDomicile?.adresse}">
 				<li class="fieldcontain">
-					<span id="adresseDomicile-label" class="property-label"><g:message code="utilisateur.adresseDomicile.label" default="Adresse Domicile" /></span>
+					<span id="adresseDomicile-label" class="property-label"><g:message code="utilisateur.adresseDomicile.adresse.label"  /></span>
 					
-						<span class="property-value" aria-labelledby="adresseDomicile-label"><g:link controller="adresse" action="show" id="${utilisateurInstance?.adresseDomicile?.id}">${utilisateurInstance?.adresseDomicile?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="adresseDomicile-label"><g:fieldValue bean="${utilisateurInstance.adresseDomicile}" field="adresse"/></span>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${utilisateurInstance?.adresseDestination}">
+				<g:if test="${utilisateurInstance?.adresseDomicile?.codePostal}">
 				<li class="fieldcontain">
-					<span id="adresseDestination-label" class="property-label"><g:message code="utilisateur.adresseDestination.label" default="Adresse Destination" /></span>
+					<span id="codePostalDomicile-label" class="property-label"><g:message code="utilisateur.adresseDomicile.codepostal.label"  /></span>
 					
-						<span class="property-value" aria-labelledby="adresseDestination-label"><g:link controller="adresse" action="show" id="${utilisateurInstance?.adresseDestination?.id}">${utilisateurInstance?.adresseDestination?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="codePostalDomicile-label"><g:fieldValue bean="${utilisateurInstance.adresseDomicile}" field="codePostal"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${utilisateurInstance?.adresseDomicile?.ville}">
+				<li class="fieldcontain">
+					<span id="villeDomicile-label" class="property-label"><g:message code="utilisateur.adresseDomicile.ville.label"  /></span>
+					
+						<span class="property-value" aria-labelledby="villeDomicile-label"><g:fieldValue bean="${utilisateurInstance.adresseDomicile}" field="ville"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${utilisateurInstance?.adresseDestination?.adresse}">
+				<li class="fieldcontain">
+					<span id="adresseDestination-label" class="property-label"><g:message code="utilisateur.adresseDestination.adresse.label"  /></span>
+					
+						<span class="property-value" aria-labelledby="adresseDestination-label"><g:fieldValue bean="${utilisateurInstance.adresseDestination}" field="adresse"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${utilisateurInstance?.adresseDestination?.codePostal}">
+				<li class="fieldcontain">
+					<span id="codePostalDestination-label" class="property-label"><g:message code="utilisateur.adresseDestination.codepostal.label"  /></span>
+					
+						<span class="property-value" aria-labelledby="codePostalDestination-label"><g:fieldValue bean="${utilisateurInstance.adresseDestination}" field="codePostal"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${utilisateurInstance?.adresseDestination?.ville}">
+				<li class="fieldcontain">
+					<span id="villeDestination-label" class="property-label"><g:message code="utilisateur.adresseDestination.ville.label" /></span>
+					
+						<span class="property-value" aria-labelledby="villeDestination-label"><g:fieldValue bean="${utilisateurInstance.adresseDestination}" field="ville"/></span>
 					
 				</li>
 				</g:if>
@@ -131,7 +167,7 @@
 			
 			</ol>
 			
-			<form class="form-horizontal">
+			<g:form class="form-horizontal">
 				<div class="control-group">
 					<div class="controls">
 						<g:hiddenField name="id" value="${utilisateurInstance?.id}" />
@@ -139,7 +175,7 @@
 						<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 					</div>
 				</div>
-			</form>
+			</g:form>
 			
 		</div>
 	</body>
