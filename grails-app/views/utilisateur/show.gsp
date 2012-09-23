@@ -16,6 +16,7 @@
 
 <%@ page import="fr.sigway.ref.Utilisateur" %>
 <!doctype html>
+
 <html>
 	<head>
 		<meta name="layout" content="main">
@@ -23,10 +24,8 @@
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#show-utilisateur" class="skip" tabindex="-1"><g:message code="default.link.skip.label" /></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+		<div role="navigation">
+			<ul class="nav nav-tabs">
 				<sec:ifAllGranted roles="ROLE_PROFIL_ADMIN">
 					<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 					<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
@@ -36,13 +35,13 @@
 		<div id="show-utilisateur" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+				<div class="alert" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list utilisateur">
 			
 				<g:if test="${utilisateurInstance?.email}">
 				<li class="fieldcontain">
-					<span id="email-label" class="property-label"><g:message code="utilisateur.email.label"  /></span>
+					<span id="email-label" class="property-label"><g:message code="utilisateur.email.label" default="Email" /></span>
 					
 						<span class="property-value" aria-labelledby="email-label"><g:fieldValue bean="${utilisateurInstance}" field="email"/></span>
 					
@@ -51,7 +50,7 @@
 			
 				<g:if test="${utilisateurInstance?.password}">
 				<li class="fieldcontain">
-					<span id="password-label" class="property-label"><g:message code="utilisateur.password.label"  /></span>
+					<span id="password-label" class="property-label"><g:message code="utilisateur.password.label" default="Password" /></span>
 					
 						<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${utilisateurInstance}" field="password"/></span>
 					
@@ -60,7 +59,7 @@
 			
 				<g:if test="${utilisateurInstance?.nom}">
 				<li class="fieldcontain">
-					<span id="nom-label" class="property-label"><g:message code="utilisateur.nom.label" /></span>
+					<span id="nom-label" class="property-label"><g:message code="utilisateur.nom.label" default="Nom" /></span>
 					
 						<span class="property-value" aria-labelledby="nom-label"><g:fieldValue bean="${utilisateurInstance}" field="nom"/></span>
 					
@@ -69,7 +68,7 @@
 			
 				<g:if test="${utilisateurInstance?.prenom}">
 				<li class="fieldcontain">
-					<span id="prenom-label" class="property-label"><g:message code="utilisateur.prenom.label"  /></span>
+					<span id="prenom-label" class="property-label"><g:message code="utilisateur.prenom.label" default="Prenom" /></span>
 					
 						<span class="property-value" aria-labelledby="prenom-label"><g:fieldValue bean="${utilisateurInstance}" field="prenom"/></span>
 					
@@ -132,7 +131,7 @@
 			
 				<g:if test="${utilisateurInstance?.accountExpired}">
 				<li class="fieldcontain">
-					<span id="accountExpired-label" class="property-label"><g:message code="utilisateur.accountExpired.label"  /></span>
+					<span id="accountExpired-label" class="property-label"><g:message code="utilisateur.accountExpired.label" default="Account Expired" /></span>
 					
 						<span class="property-value" aria-labelledby="accountExpired-label"><g:formatBoolean boolean="${utilisateurInstance?.accountExpired}" /></span>
 					
@@ -141,7 +140,7 @@
 			
 				<g:if test="${utilisateurInstance?.accountLocked}">
 				<li class="fieldcontain">
-					<span id="accountLocked-label" class="property-label"><g:message code="utilisateur.accountLocked.label"  /></span>
+					<span id="accountLocked-label" class="property-label"><g:message code="utilisateur.accountLocked.label" default="Account Locked" /></span>
 					
 						<span class="property-value" aria-labelledby="accountLocked-label"><g:formatBoolean boolean="${utilisateurInstance?.accountLocked}" /></span>
 					
@@ -150,7 +149,7 @@
 			
 				<g:if test="${utilisateurInstance?.enabled}">
 				<li class="fieldcontain">
-					<span id="enabled-label" class="property-label"><g:message code="utilisateur.enabled.label"  /></span>
+					<span id="enabled-label" class="property-label"><g:message code="utilisateur.enabled.label" default="Enabled" /></span>
 					
 						<span class="property-value" aria-labelledby="enabled-label"><g:formatBoolean boolean="${utilisateurInstance?.enabled}" /></span>
 					
@@ -159,7 +158,7 @@
 			
 				<g:if test="${utilisateurInstance?.passwordExpired}">
 				<li class="fieldcontain">
-					<span id="passwordExpired-label" class="property-label"><g:message code="utilisateur.passwordExpired.label" /></span>
+					<span id="passwordExpired-label" class="property-label"><g:message code="utilisateur.passwordExpired.label" default="Password Expired" /></span>
 					
 						<span class="property-value" aria-labelledby="passwordExpired-label"><g:formatBoolean boolean="${utilisateurInstance?.passwordExpired}" /></span>
 					
@@ -167,13 +166,17 @@
 				</g:if>
 			
 			</ol>
-			<g:form>
-				<fieldset class="buttons">
-					<g:hiddenField name="id" value="${utilisateurInstance?.id}" />
-					<g:link class="edit" action="edit" id="${utilisateurInstance?.id}"><g:message code="default.button.edit.label"  /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message')}');" />
-				</fieldset>
+			
+			<g:form class="form-horizontal">
+				<div class="control-group">
+					<div class="controls">
+						<g:hiddenField name="id" value="${utilisateurInstance?.id}" />
+						<g:link class="btn btn-warning" action="edit" id="${utilisateurInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+						<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					</div>
+				</div>
 			</g:form>
+			
 		</div>
 	</body>
 </html>

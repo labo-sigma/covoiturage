@@ -24,61 +24,89 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title><g:layoutTitle default="Grails"/></title>
+		<title><g:layoutTitle default="Covoiturage"/></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
 		<r:require modules="bootstrap"/>
+		<style type="text/css">
+			body {
+			  padding-top: 60px;
+			  padding-bottom: 40px;
+			}
+			.sidebar-nav {
+			  padding: 9px 0;
+			}
+	    </style>
 		<g:layoutHead/>
         <r:layoutResources />
 	</head>
 	<body>
+	
+	<%--	BARRE DE NAVIGATION  --%>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Covoiturage</a>
+          <a class="brand" href="${createLink(uri: '/')}"><g:message code="accueil.title"/></a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#"><g:message code="menu.accueil" /></a></li>
-              <li><a href="#"><g:message code="menu.aPropos" /></a></li>
-              <li><a href="#"><g:message code="menu.contact" /></a></li>
+              <li class="active"><a href="${createLink(uri: '/')}"><g:message code="menu.accueil" /></a></li>
+              <li><a href="${createLink(uri: '/contact')}"><g:message code="menu.aPropos" /></a></li>
+              <li><a href="${createLink(uri: '/aPropos')}"><g:message code="menu.contact" /></a></li>
               <sec:ifLoggedIn>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><g:message code="menu.compte"/><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><g:link controller="utilisateur" action="modifierCompte" id="${SecurityContextHolder.getContext().getAuthentication().getName()}"><g:message code="modifier mon compte"/></g:link></li>
+                  <li><g:link controller="utilisateur" action="modifierCompte" id="${SecurityContextHolder.getContext().getAuthentication().getName()}"><g:message code="menu.compte.modifier"/></g:link></li>
                   <li><g:link controller="logout" action="index" ><g:message code="accueil.deconnexion"/></g:link></li>
                 </ul>
               </li>
               </sec:ifLoggedIn>
             </ul>
             <sec:ifNotLoggedIn>
-            <form action='${g.createLink(controller:'j_spring_security_check')}' class="navbar-form pull-right" method='POST' id='loginForm'>
-              <input class="span2" type="text" placeholder="${g.message(code:"springSecurity.login.username.label") }" name="j_username">
-              <input class="span2" type="password" placeholder="${g.message(code:"springSecurity.login.password.label") }" name='j_password'>
-              <input type='submit' id="submit" value='${message(code: "springSecurity.login.button")}' class="btn"/>
-            </form>
+	            <form action='${g.createLink(controller:'j_spring_security_check')}' class="navbar-form pull-right" method='POST' id='loginForm'>
+	            	<input class="span2" type="text" placeholder="${g.message(code:"springSecurity.login.username.label") }" name="j_username">
+	            	<input class="span2" type="password" placeholder="${g.message(code:"springSecurity.login.password.label") }" name='j_password'>
+	            	<input type='submit' id="submit" value='${message(code: "springSecurity.login.button")}' class="btn"/>
+	        	</form>
             </sec:ifNotLoggedIn>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
-    <div class="container">
+    
+	<%--    CONTAINEUR GRIS CENTRALE  --%>
+    <div class="container-fluid">
+      <div class="row-fluid">
+      
+        <div class="span1">
+			<%--   SPAN POUR CENTRER L'ELEMENT GRIS CENTRALE  --%>
+        </div><!--/span-->
+        
+        <div class="span10">
+			<g:layoutBody/>
+			<g:javascript library="application"/>
+        	<r:layoutResources />
+        </div><!--/span-->
+        
+        <div class="span1">
+			<%--   SPAN POUR CENTRER L'ELEMENT GRIS CENTRALE  --%>
+        </div><!--/span-->
+        
+      </div><!--/row-->
 
-		<g:layoutBody/>
       <hr>
-      <footer>
-        <p>&copy; Company 2012</p>
-      </footer>
-
+      
+		<%--  FOOTER  --%>
+		<footer>
+			<p>&copy; Company 2012</p>
+		</footer>
     </div>
-		<g:javascript library="application"/>
-        <r:layoutResources />
 	</body>
 </html>
