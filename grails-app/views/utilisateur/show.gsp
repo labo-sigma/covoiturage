@@ -1,4 +1,4 @@
-<!--Sigway - covoiturage
+<!-- Sigway - covoiturage
  Copyright (C) 2012 - Laurent Coiffard
  
  This program is free software: you can redistribute it and/or modify
@@ -12,7 +12,7 @@
  GNU General Public License for more details.
  
  You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>-->
+ along with this program.  If not, see <http://www.gnu.org/licenses/> -->
 
 <%@ page import="fr.sigway.ref.Utilisateur" %>
 <!doctype html>
@@ -24,159 +24,167 @@
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<div role="navigation">
-			<ul class="nav nav-tabs">
-				<sec:ifAllGranted roles="ROLE_PROFIL_ADMIN">
-					<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-					<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-				</sec:ifAllGranted>
-			</ul>
-		</div>
-		<div id="show-utilisateur" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-				<div class="alert" role="status">${flash.message}</div>
-			</g:if>
-			<ol class="property-list utilisateur">
+		<div class="row-fluid">
 			
-				<g:if test="${utilisateurInstance?.email}">
-				<li class="fieldcontain">
-					<span id="email-label" class="property-label"><g:message code="utilisateur.email.label" default="Email" /></span>
-					
-						<span class="property-value" aria-labelledby="email-label"><g:fieldValue bean="${utilisateurInstance}" field="email"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${utilisateurInstance?.password}">
-				<li class="fieldcontain">
-					<span id="password-label" class="property-label"><g:message code="utilisateur.password.label" default="Password" /></span>
-					
-						<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${utilisateurInstance}" field="password"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${utilisateurInstance?.nom}">
-				<li class="fieldcontain">
-					<span id="nom-label" class="property-label"><g:message code="utilisateur.nom.label" default="Nom" /></span>
-					
-						<span class="property-value" aria-labelledby="nom-label"><g:fieldValue bean="${utilisateurInstance}" field="nom"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${utilisateurInstance?.prenom}">
-				<li class="fieldcontain">
-					<span id="prenom-label" class="property-label"><g:message code="utilisateur.prenom.label" default="Prenom" /></span>
-					
-						<span class="property-value" aria-labelledby="prenom-label"><g:fieldValue bean="${utilisateurInstance}" field="prenom"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${utilisateurInstance?.adresseDomicile?.adresse}">
-				<li class="fieldcontain">
-					<span id="adresseDomicile-label" class="property-label"><g:message code="utilisateur.adresseDomicile.adresse.label"  /></span>
-					
-						<span class="property-value" aria-labelledby="adresseDomicile-label"><g:fieldValue bean="${utilisateurInstance.adresseDomicile}" field="adresse"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${utilisateurInstance?.adresseDomicile?.codePostal}">
-				<li class="fieldcontain">
-					<span id="codePostalDomicile-label" class="property-label"><g:message code="utilisateur.adresseDomicile.codepostal.label"  /></span>
-					
-						<span class="property-value" aria-labelledby="codePostalDomicile-label"><g:fieldValue bean="${utilisateurInstance.adresseDomicile}" field="codePostal"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${utilisateurInstance?.adresseDomicile?.ville}">
-				<li class="fieldcontain">
-					<span id="villeDomicile-label" class="property-label"><g:message code="utilisateur.adresseDomicile.ville.label"  /></span>
-					
-						<span class="property-value" aria-labelledby="villeDomicile-label"><g:fieldValue bean="${utilisateurInstance.adresseDomicile}" field="ville"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${utilisateurInstance?.adresseDestination?.adresse}">
-				<li class="fieldcontain">
-					<span id="adresseDestination-label" class="property-label"><g:message code="utilisateur.adresseDestination.adresse.label"  /></span>
-					
-						<span class="property-value" aria-labelledby="adresseDestination-label"><g:fieldValue bean="${utilisateurInstance.adresseDestination}" field="adresse"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${utilisateurInstance?.adresseDestination?.codePostal}">
-				<li class="fieldcontain">
-					<span id="codePostalDestination-label" class="property-label"><g:message code="utilisateur.adresseDestination.codepostal.label"  /></span>
-					
-						<span class="property-value" aria-labelledby="codePostalDestination-label"><g:fieldValue bean="${utilisateurInstance.adresseDestination}" field="codePostal"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${utilisateurInstance?.adresseDestination?.ville}">
-				<li class="fieldcontain">
-					<span id="villeDestination-label" class="property-label"><g:message code="utilisateur.adresseDestination.ville.label" /></span>
-					
-						<span class="property-value" aria-labelledby="villeDestination-label"><g:fieldValue bean="${utilisateurInstance.adresseDestination}" field="ville"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${utilisateurInstance?.accountExpired}">
-				<li class="fieldcontain">
-					<span id="accountExpired-label" class="property-label"><g:message code="utilisateur.accountExpired.label" default="Account Expired" /></span>
-					
-						<span class="property-value" aria-labelledby="accountExpired-label"><g:formatBoolean boolean="${utilisateurInstance?.accountExpired}" /></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${utilisateurInstance?.accountLocked}">
-				<li class="fieldcontain">
-					<span id="accountLocked-label" class="property-label"><g:message code="utilisateur.accountLocked.label" default="Account Locked" /></span>
-					
-						<span class="property-value" aria-labelledby="accountLocked-label"><g:formatBoolean boolean="${utilisateurInstance?.accountLocked}" /></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${utilisateurInstance?.enabled}">
-				<li class="fieldcontain">
-					<span id="enabled-label" class="property-label"><g:message code="utilisateur.enabled.label" default="Enabled" /></span>
-					
-						<span class="property-value" aria-labelledby="enabled-label"><g:formatBoolean boolean="${utilisateurInstance?.enabled}" /></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${utilisateurInstance?.passwordExpired}">
-				<li class="fieldcontain">
-					<span id="passwordExpired-label" class="property-label"><g:message code="utilisateur.passwordExpired.label" default="Password Expired" /></span>
-					
-						<span class="property-value" aria-labelledby="passwordExpired-label"><g:formatBoolean boolean="${utilisateurInstance?.passwordExpired}" /></span>
-					
-				</li>
-				</g:if>
-			
-			</ol>
-			
-			<g:form class="form-horizontal">
-				<div class="control-group">
-					<div class="controls">
-						<g:hiddenField name="id" value="${utilisateurInstance?.id}" />
-						<g:link class="btn btn-warning" action="edit" id="${utilisateurInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-						<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+			<div class="span2">
+				<sec:ifAnyGranted roles="ROLE_PROFIL_COVOITUREUR,ROLE_PROFIL_ADMIN">
+					<div class="well">
+						<ul class="nav nav-list">
+							<li class="nav-header">\${entityName}</li>
+							<sec:ifAllGranted roles="ROLE_PROFIL_ADMIN">
+								<li>
+									<g:link class="list" action="list">
+										<i class="icon-list"></i>
+										<g:message code="default.list.label" args="[entityName]" />
+									</g:link>
+								</li>
+								<li>
+									<g:link class="create" action="create">
+										<i class="icon-plus"></i>
+										<g:message code="default.create.label" args="[entityName]" />
+									</g:link>
+								</li>
+							</sec:ifAllGranted>
+							<li class="active">
+								<g:link class="edit" action="edit" id="${utilisateurInstance.id}">
+									<i class="icon-edit"></i>
+									<g:message code="default.edit.label" args="[entityName]" />
+								</g:link>
+							</li>
+							<li>
+								<g:link controller="logout" action="index" >
+									<g:message code="accueil.deconnexion"/>
+								</g:link>
+							</li>
+						</ul>
 					</div>
-				</div>
-			</g:form>
+				</sec:ifAnyGranted>
+			</div>
 			
+			<div class="span8">
+
+				<div class="page-header">
+					<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+				</div>
+
+				<g:if test="${flash.message}">
+				<bootstrap:alert class="alert-info">${flash.message}</bootstrap:alert>
+				</g:if>
+
+				<dl>
+				
+					<g:if test="${utilisateurInstance?.email}">
+						<dt><g:message code="utilisateur.email.label" default="Email" /></dt>
+						
+							<dd><g:fieldValue bean="${utilisateurInstance}" field="email"/></dd>
+						
+					</g:if>
+				
+					<g:if test="${utilisateurInstance?.password}">
+						<dt><g:message code="utilisateur.password.label" default="Password" /></dt>
+						
+							<dd><g:fieldValue bean="${utilisateurInstance}" field="password"/></dd>
+						
+					</g:if>
+				
+					<g:if test="${utilisateurInstance?.nom}">
+						<dt><g:message code="utilisateur.nom.label" default="Nom" /></dt>
+						
+							<dd><g:fieldValue bean="${utilisateurInstance}" field="nom"/></dd>
+						
+					</g:if>
+				
+					<g:if test="${utilisateurInstance?.prenom}">
+						<dt><g:message code="utilisateur.prenom.label" default="Prenom" /></dt>
+						
+							<dd><g:fieldValue bean="${utilisateurInstance}" field="prenom"/></dd>
+						
+					</g:if>
+				
+					<g:if test="${utilisateurInstance?.adresseDomicile?.adresse}">
+						<dt><g:message code="utilisateur.adresseDomicile.adresse.label"  /></dt>
+						
+							<dd><g:fieldValue bean="${utilisateurInstance.adresseDomicile}" field="adresse"/></dd>
+						
+					</g:if>
+				
+					<g:if test="${utilisateurInstance?.adresseDomicile?.codePostal}">
+						<dt><g:message code="utilisateur.adresseDomicile.codepostal.label"  /></dt>
+						
+							<dd><g:fieldValue bean="${utilisateurInstance.adresseDomicile}" field="codePostal"/></dd>
+						
+					</g:if>
+				
+					<g:if test="${utilisateurInstance?.adresseDomicile?.ville}">
+						<dt><g:message code="utilisateur.adresseDomicile.ville.label"  /></dt>
+						
+							<dd><g:fieldValue bean="${utilisateurInstance.adresseDomicile}" field="ville"/></dd>
+						
+					</g:if>
+				
+					<g:if test="${utilisateurInstance?.adresseDestination?.adresse}">
+						<dt><g:message code="utilisateur.adresseDestination.adresse.label"  /></dt>
+						
+							<dd><g:fieldValue bean="${utilisateurInstance.adresseDestination}" field="adresse"/></dd>
+						
+					</g:if>
+				
+					<g:if test="${utilisateurInstance?.adresseDestination?.codePostal}">
+						<dt><g:message code="utilisateur.adresseDestination.codepostal.label"  /></dt>
+						
+							<dd><g:fieldValue bean="${utilisateurInstance.adresseDestination}" field="codePostal"/></dd>
+
+					</g:if>
+				
+					<g:if test="${utilisateurInstance?.adresseDestination?.ville}">
+						<dt><g:message code="utilisateur.adresseDestination.ville.label" /></dt>
+						
+							<dd><g:fieldValue bean="${utilisateurInstance.adresseDestination}" field="ville"/></dd>
+						
+					</g:if>
+				
+					<sec:ifAllGranted roles="ROLE_PROFIL_ADMIN">
+						<dt><g:message code="utilisateur.accountExpired.label" default="Account Expired" /></dt>
+						
+							<dd><g:formatBoolean boolean="${utilisateurInstance?.accountExpired}" /></dd>
+					
+						<dt><g:message code="utilisateur.accountLocked.label" default="Account Locked" /></dt>
+						
+							<dd><g:formatBoolean boolean="${utilisateurInstance?.accountLocked}" /></dd>
+						
+				
+						<dt><g:message code="utilisateur.enabled.label" default="Enabled" /></dt>
+						
+							<dd><g:formatBoolean boolean="${utilisateurInstance?.enabled}" /></dd>
+						
+				
+						<dt><g:message code="utilisateur.passwordExpired.label" default="Password Expired" /></dt>
+						
+							<dd><g:formatBoolean boolean="${utilisateurInstance?.passwordExpired}" /></dd>
+							
+					</sec:ifAllGranted>
+				
+				</dl>
+
+				<g:form>
+					<g:hiddenField name="id" value="${utilisateurInstance?.id}" />
+					<div class="form-actions">
+						<g:link class="btn" action="edit" id="${utilisateurInstance?.id}">
+							<i class="icon-pencil"></i>
+							<g:message code="default.button.edit.label" default="Edit" />
+						</g:link>
+						<button class="btn btn-danger" type="submit" name="_action_delete">
+							<i class="icon-trash icon-white"></i>
+							<g:message code="default.button.delete.label" default="Delete" />
+						</button>
+					</div>
+				</g:form>
+				
+			</div>
+			
+			<div class="span2">
+			</div>
+
 		</div>
 	</body>
 </html>
