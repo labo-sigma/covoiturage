@@ -14,13 +14,13 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/> -->
  
-<%@ page import="fr.sigway.ref.Utilisateur" %>
+<%=packageName%>
 <!doctype html>
 
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'utilisateur.label', default: 'Utilisateur')}" />
+		<g:set var="entityName" value="\${message(code: '${domainClass.propertyName}.label', default: '${className}')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -30,7 +30,7 @@
 				<sec:ifAnyGranted roles="ROLE_PROFIL_COVOITUREUR,ROLE_PROFIL_ADMIN">
 					<div class="well">
 						<ul class="nav nav-list">
-							<li class="nav-header">${entityName}</li>
+							<li class="nav-header">\${entityName}</li>
 							<sec:ifAllGranted roles="ROLE_PROFIL_ADMIN">
 								<li>
 									<g:link class="list" action="list">
@@ -46,7 +46,7 @@
 								</li>
 							</sec:ifAllGranted>
 							<li class="active">
-								<g:link class="edit" action="edit" id="${utilisateurInstance.id}">
+								<g:link class="edit" action="edit" id="\${${propertyName}?.id}">
 									<i class="icon-edit"></i>
 									<g:message code="default.edit.label" args="[entityName]" />
 								</g:link>
@@ -68,24 +68,24 @@
 					<h1><g:message code="default.edit.label" args="[entityName]" /></h1>
 				</div>
 
-				<g:if test="${flash.message}">
-					<bootstrap:alert class="alert-info">${flash.message}</bootstrap:alert>
+				<g:if test="\${flash.message}">
+					<bootstrap:alert class="alert-info">\${flash.message}</bootstrap:alert>
 				</g:if>
 
-				<g:hasErrors bean="${utilisateurInstance}">
+				<g:hasErrors bean="\${${propertyName}}">
 					<bootstrap:alert class="alert-error">
 				<ul>
-					<g:eachError bean="${utilisateurInstance}" var="error">
-					<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+					<g:eachError bean="\${${propertyName}}" var="error">
+					<li <g:if test="\${error in org.springframework.validation.FieldError}">data-field-id="\${error.field}"</g:if>><g:message error="\${error}"/></li>
 					</g:eachError>
 				</ul>
 				</bootstrap:alert>
 				</g:hasErrors>
 
 				<fieldset>
-					<g:form class="form-horizontal" action="edit" id="${utilisateurInstance?.id}" >
-						<g:hiddenField name="id" value="${utilisateurInstance?.id}" />
-						<g:hiddenField name="version" value="${utilisateurInstance?.version}" />
+					<g:form class="form-horizontal" action="edit" id="\${${propertyName}?.id}" <%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
+						<g:hiddenField name="id" value="\${${propertyName}?.id}" />
+						<g:hiddenField name="version" value="\${${propertyName}?.version}" />
 						<fieldset>
 							<g:render template="form"/>
 							<div class="form-actions">
