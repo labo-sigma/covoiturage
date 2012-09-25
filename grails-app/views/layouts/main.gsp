@@ -22,14 +22,26 @@
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title><g:layoutTitle default="Covoiturage"/></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+		<meta charset="utf-8">
+		<title><g:layoutTitle default="${meta(name: 'app.name')}"/></title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+		
+		<meta name="viewport" content="initial-scale = 1.0">
+		
+		<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<r:require modules="bootstrap"/>
+
+		<!-- Le fav and touch icons -->
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-		<r:require modules="bootstrap"/>
+		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-114x114.png')}">
+
 		<style type="text/css">
 			body {
 			  padding-top: 60px;
@@ -39,8 +51,9 @@
 			  padding: 9px 0;
 			}
 	    </style>
+	    
 		<g:layoutHead/>
-        <r:layoutResources />
+		<r:layoutResources/>
 	</head>
 	<body>
 	
@@ -48,17 +61,19 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
+        
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
+          
           <a class="brand" href="${createLink(uri: '/')}"><g:message code="accueil.title"/></a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="${createLink(uri: '/')}"><g:message code="menu.accueil" /></a></li>
-              <li><a href="${createLink(uri: '/contact')}"><g:message code="menu.aPropos" /></a></li>
-              <li><a href="${createLink(uri: '/aPropos')}"><g:message code="menu.contact" /></a></li>
+              <li><a href="${createLink(uri: '/aPropos')}"><g:message code="menu.aPropos" /></a></li>
+              <li><a href="${createLink(uri: '/contact')}"><g:message code="menu.contact" /></a></li>
               <sec:ifLoggedIn>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><g:message code="menu.compte"/><b class="caret"></b></a>
@@ -77,36 +92,23 @@
 	        	</form>
             </sec:ifNotLoggedIn>
           </div><!--/.nav-collapse -->
+          
         </div>
       </div>
     </div>
     
 	<%--    CONTAINEUR GRIS CENTRALE  --%>
-    <div class="container-fluid">
-      <div class="row-fluid">
-      
-        <div class="span1">
-			<%--   SPAN POUR CENTRER L'ELEMENT GRIS CENTRALE  --%>
-        </div><!--/span-->
-        
-        <div class="span10">
-			<g:layoutBody/>
-			<g:javascript library="application"/>
-        	<r:layoutResources />
-        </div><!--/span-->
-        
-        <div class="span1">
-			<%--   SPAN POUR CENTRER L'ELEMENT GRIS CENTRALE  --%>
-        </div><!--/span-->
-        
-      </div><!--/row-->
+	<div class="container-fluid">
+		<g:layoutBody/>
 
-      <hr>
-      
-		<%--  FOOTER  --%>
+		<hr>
+
 		<footer>
-			<p>&copy; Company 2012</p>
+			<p>&copy; Company 2011</p>
 		</footer>
-    </div>
+	</div>
+		
+    <r:layoutResources />
+    
 	</body>
 </html>

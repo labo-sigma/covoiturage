@@ -21,30 +21,33 @@
 </head>
 
 <body>
-	<g:if test='${flash.message}'>
-		<div class="alert">
-			<button type="button" class="close" data-dismiss="alert">×</button>
-			<strong>Warning!</strong> ${flash.message}
+	<div class="row-fluid">
+		<div class="span2">
 		</div>
-	</g:if>	
-	
-	<div class="hero-unit">
-		<h2><g:message code="accueil.accroche.titre" /></h2>
-		<p><g:message code="accueil.accroche.contenu"/></p>
-		<p>
-	 		<g:form id='accueilForm' class='cssform' autocomplete='off'  url="[action:'rechercherCorrespondanceCodePostal',controller:'accueil']" >
+		
+		<div class="span8">
+			<div class="hero-unit">
+				<h2><g:message code="accueil.accroche.titre" /></h2>
+				<p><g:message code="accueil.accroche.contenu"/></p>
 				<p>
-					<label ><g:message code="accueil.codePostal"/>:</label>
-					<g:field type="number" min="1" max="99999" required="" name="codePostal" value="${codePostal}"/>
-					<p><input type='submit' id="submit" value='${message(code: "default.button.search")}' class="btn btn-primary btn-large"/></p>
-				</p>			
-				<g:if test="${correspondances}">
-					<p>${correspondances + " "}<g:message code="accueil.correspondances"/></p> 
-					<p><g:link controller="accueil" action="creerCompte" ><g:message code="accueil.creercompte"/></g:link></p>
-				</g:if>
-			</g:form>
-	      </p>
-	    </div>
+			 		<g:form id='accueilForm' class='cssform' autocomplete='off'  url="[action:'rechercherCorrespondanceCodePostal',controller:'accueil']" >
+						<p>
+							<label ><g:message code="accueil.codePostal"/>:</label>
+							<g:field type="number" min="1" max="99999" required="" name="codePostal" value="${codePostal}"/>
+							<p><input type='submit' id="submit" value='${message(code: "default.button.search")}' class="btn btn-primary btn-large"/></p>
+						</p>			
+						<g:if test="${correspondances}">
+							<p>${correspondances + " "}<g:message code="accueil.correspondances"/></p> 
+							<p><g:link controller="accueil" action="creerCompte" ><g:message code="accueil.creercompte"/></g:link></p>
+						</g:if>
+					</g:form>
+			      </p>
+			</div>
+		</div>
+	
+		<div class="span2">
+		</div>
+	</div>
 	<script type='text/javascript'>
 		<!--
 		(function() {
